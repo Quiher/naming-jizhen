@@ -410,6 +410,8 @@ function openPost(kind, p){
     r.append(formBox(nameOf(p) || shortTitle(p)));
   } else r.append(el('div','post', main || '（這篇只有標題，當年沒寫完）'));
   if (wish){ const w = el('section','wish'); w.append(el('p','lbl','長輩的期許'), el('div','post',wish)); r.append(w); }
+  // 2010 舊文〈長輩的期許〉也放讀後感想表單（每個人的名字文章下）
+  if (kind === 'series' && !p.md) r.append(formBox(nameOf(p) || shortTitle(p)));
   if (p.m.length){
     const c = el('section','comments'); c.append(el('h2',null,`讀者留言 ${p.m.length}`));
     p.m.forEach(x => { const d = el('div','cm'); const w = el('div','who'); w.append(el('b',null,x.a), document.createTextNode(x.d)); d.append(w, el('div','txt',x.t)); c.append(d); });
