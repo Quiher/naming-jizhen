@@ -197,6 +197,56 @@ main{padding-block:56px 96px}
   .wish{padding:22px 20px}
 }
 @media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+
+/* ===== 2026-10-05 好點好找：導覽放大加深、目前頁實心標籤、手機導覽換行不藏、
+   搜尋框放大、名字快速索引、按鈕化連結、上下都有返回、回到頂端 ===== */
+html{scroll-behavior:smooth}
+body{font-size:16.5px}
+.masthead .frame{min-height:72px;padding-block:10px}
+nav.tabs{gap:6px;flex-wrap:wrap;overflow:visible}
+nav.tabs a{font-size:15.5px;color:var(--ink);padding:8px 15px;border:0;border-radius:999px;transition:background-color .18s,color .18s}
+nav.tabs a:hover{background:var(--wash);color:var(--ink)}
+nav.tabs a[aria-current="page"]{background:var(--ink);color:var(--paper);font-weight:500}
+nav.tabs a[href="#apply"]:not([aria-current]){box-shadow:inset 0 0 0 1.5px var(--gold);font-weight:500}
+.tools input{font-size:16px;min-height:50px;padding:10px 18px 10px 46px;border-radius:999px;
+  background:var(--sheet) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8f90' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 17px center/19px}
+.tools input:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--navy) 18%,transparent)}
+.tools select{border-radius:999px;min-height:50px;padding-inline:16px}
+.namedex{max-width:var(--w-card);margin:-14px auto 40px}
+.namedex p{font-size:13px;letter-spacing:.2em;color:var(--gold);margin:0 0 12px}
+.namedex div{display:flex;flex-wrap:wrap;gap:8px}
+.namedex button{all:unset;box-sizing:border-box;cursor:pointer;font-family:var(--f-name);font-size:18px;letter-spacing:.08em;line-height:1;padding:9px 15px;min-height:38px;border:1px solid var(--hair);border-radius:999px;background:var(--sheet);transition:border-color .18s,color .18s,background-color .18s}
+.namedex button:hover{border-color:var(--navy);color:var(--navy)}
+.namedex button:active{transform:translateY(1px)}
+.namedex button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.card .go{font-size:14px;font-weight:500;color:var(--navy);padding-top:8px}
+.card .go::after{content:" →";color:var(--gold)}
+.card:hover .go{color:var(--gold)}
+.row{padding:18px 12px;border-radius:8px;transition:background-color .15s}
+.row:hover{background:var(--wash)}
+.link{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;margin:6px 4px 0 0;border:1px solid var(--hair);border-radius:999px;background:var(--sheet);font-size:15px;transition:border-color .18s}
+.link:hover{border-color:var(--navy);text-decoration:none}
+.back{border:1px solid var(--hair);border-radius:999px;padding:0 20px;min-height:44px;line-height:42px;color:var(--ink);background:var(--sheet);font-size:15px;transition:border-color .18s}
+.back:hover{border-color:var(--navy)}
+.back.end{display:block;width:max-content;margin:40px auto 0}
+.pager button{padding:12px 16px;border:1px solid var(--hair);border-radius:10px;background:var(--sheet);transition:border-color .18s}
+.pager button:hover{border-color:var(--navy)}
+.formbox a.btnf{font-size:16px;padding:13px 26px;font-weight:500;transition:background-color .18s,transform .18s}
+.formbox a.btnf:active{transform:translateY(1px)}
+.totop{position:fixed;right:clamp(16px,3vw,32px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;width:48px;height:48px;border:0;border-radius:50%;background:var(--ink);color:var(--paper);font:inherit;font-size:20px;line-height:1;cursor:pointer;box-shadow:0 6px 18px color-mix(in srgb,var(--ink) 22%,transparent);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+.totop:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (max-width:640px){
+  /* 手機上選單會換成兩行，固定在頂端太佔畫面；改成跟著捲走，靠右下「回到頂端」回來 */
+  .masthead{position:static}
+  .masthead .frame{padding-block:8px;gap:6px}
+  nav.tabs{gap:4px}
+  nav.tabs a{font-size:15px;padding:7px 12px}
+  .namedex{margin-top:-20px}
+  .namedex button{font-size:17px;padding:8px 13px}
+  .pager button{padding:10px 12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.totop,.row,.link,.back,.namedex button{transition:none}}
 </style>
 
 <header class="masthead"><div class="frame">
@@ -241,7 +291,8 @@ main{padding-block:56px 96px}
   <section id="v-series" class="frame" hidden>
     <div id="series-list">
       <header class="page-head"><p class="eyebrow">名字解讀</p><h1>五十個名字</h1><p>每個名字，都是長輩一個字一個字挑出來的，裡面藏著一句沒說出口的話：希望你平安、聰明、不愁吃穿、被疼。把這句話一個字一個字讀出來，就是「長輩的期許」。寫的是願望，不是命運。一篇讀一個名字：查字義、拆字形、念諧音，推出個性，最後一段寫下長輩的期許。2010 年開始寫，最後一篇在 2019 年。</p></header>
-      <div class="tools"><input id="q1" type="search" placeholder="搜尋名字或內文" aria-label="搜尋系列文章"><span class="count" id="c1"></span></div>
+      <div class="tools"><input id="q1" type="search" placeholder="輸入名字或關鍵字" aria-label="搜尋系列文章"><span class="count" id="c1"></span></div>
+      <nav class="namedex" id="namedex" aria-label="名字快速索引"></nav>
       <div class="cards" id="cards"></div>
     </div>
     <article class="reader" id="reader-series" hidden></article>
@@ -367,8 +418,19 @@ function drawCards(){
     const mt = el('span','mt'); mt.append(el('span',null,p.d));
     if (p.s === 'draft') mt.append(el('span','tag','草稿'));
     if (p.m.length) mt.append(el('span',null,`留言 ${p.m.length}`));
-    c.append(mt); c.onclick = () => openPost('series', p); box.append(c);
+    c.append(mt, el('span','go','閱讀全文')); c.onclick = () => openPost('series', p); box.append(c);
   });
+}
+// 名字快速索引：一排名字，點了直接開那一篇
+function drawNamedex(){
+  const nav = $('#namedex'); if (!nav || nav.children.length || SERIES.length < 2) return;
+  const box = el('div');
+  const lab = p => nameOf(p) || shortTitle(p);
+  SERIES.forEach(p => {
+    // 同名有兩篇（例：景嫻／景嫻合併版）⇒ 加註標題剩下的字，免得看起來像重複
+    const n = lab(p), dup = SERIES.filter(q => lab(q) === n).length > 1, rest = shortTitle(p).replace(n, '').trim();
+    const b = el('button', null, dup && rest ? `${n}・${rest}` : n); b.type = 'button'; b.onclick = () => openPost('series', p); box.append(b); });
+  nav.append(el('p', null, '快速找名字'), box);
 }
 $('#q1').addEventListener('input', drawCards);
 
@@ -392,7 +454,8 @@ $('#q2').addEventListener('input', drawRows); $('#cat').addEventListener('change
 // 單篇
 function openPost(kind, p){
   const r = $('#reader-' + kind); r.textContent = '';
-  const back = el('button','back', kind === 'series' ? '← 回到 49 篇' : '← 回到舊文清單'); back.type = 'button';
+  const backLabel = kind === 'series' ? `← 回到全部 ${SERIES.length} 篇` : '← 回到文章清單';
+  const back = el('button','back', backLabel); back.type = 'button';
   back.onclick = () => closePost(kind); r.append(back);
   const head = el('header','r-head'); const nm = nameOf(p);
   if (nm) head.append(el('div','r-name',nm));
@@ -426,6 +489,8 @@ function openPost(kind, p){
     });
     r.append(pg);
   }
+  // 讀到文末也能直接回清單，不必捲回最上面
+  const back2 = el('button','back end', backLabel); back2.type = 'button'; back2.onclick = () => closePost(kind); r.append(back2);
   $('#' + kind + '-list').hidden = true; r.hidden = false; scrollTo(0,0); back.focus({preventScroll:true});
 }
 function closePost(kind){ $('#reader-' + kind).hidden = true; $('#' + kind + '-list').hidden = false; scrollTo(0,0); }
@@ -449,7 +514,7 @@ function route(want){
   const v = VIEWS.includes(h) ? h : 'home';
   VIEWS.forEach(k => $('#v-'+k).hidden = k !== v);
   document.querySelectorAll('#tabs a').forEach(a => a.getAttribute('href') === '#'+v ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
-  if (v === 'series'){ if (!$('#cards').children.length) drawCards(); closePost('series'); }
+  if (v === 'series'){ if (!$('#cards').children.length) drawCards(); drawNamedex(); closePost('series'); }
   if (v === 'others'){ if (!$('#rows').children.length) drawRows(); closePost('others'); }
   scrollTo(0,0);
 }
@@ -466,5 +531,13 @@ document.addEventListener('click', e => {
   route(v);
 });
 route();
+// 回到頂端：往下捲超過一個畫面才出現
+(function(){
+  const b = el('button','totop','↑'); b.type = 'button'; b.setAttribute('aria-label','回到頂端'); b.title = '回到頂端';
+  b.onclick = () => scrollTo({top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  document.body.append(b);
+  const tick = () => b.classList.toggle('on', scrollY > innerHeight * 0.9);
+  addEventListener('scroll', tick, {passive:true}); tick();
+})();
 </script>
 </body></html>
