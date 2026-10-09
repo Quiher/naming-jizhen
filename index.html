@@ -524,7 +524,7 @@ const APPLY_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfGZ9Xl9OpH5XBP3zSMA
 })();
 function route(want){
   const h = typeof want === 'string' ? want : location.hash.slice(1);
-  // 單篇直達：#series/宣廷 ⇒ 打開名字解讀裡的那一篇（給本人／家長的分享連結用）
+  // 單篇直達：#series/名字 ⇒ 打開名字解讀裡的那一篇（給本人／家長的分享連結用）
   if (h.startsWith('series/')){
     const n = decodeURIComponent(h.slice(7)), p = SERIES.find(q => (nameOf(q) || shortTitle(q)) === n);
     route('series'); if (p) openPost('series', p); return;
